@@ -1,7 +1,7 @@
 import logging
 import json
 from pythonjsonlogger import jsonlogger
-from config.settings import settings
+from ..config.settings import settings
 
 def setup_logger(name: str) -> logging.Logger:
     """Set up structured JSON logging."""

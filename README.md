@@ -13,7 +13,7 @@ AI agent orchestration platform for B2B sales automation using CrewAI, FastAPI, 
 ### Setup
 ```bash
 # Clone and setup backend
-git clone https://github.com/YOUR_USERNAME/prospect-research-platform.git
+git clone https://github.com/EthanT89/prospect-research-platform.git
 cd prospect-research-platform
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
@@ -27,18 +27,36 @@ cp .env.example .env
 # Run database/schema.sql in Supabase SQL editor
 
 # Start backend
-python api/main.py
+python main.py server
 
-# Setup frontend (in new terminal)
-cd frontend
-npm install
-npm run dev
+# OR use Windows scripts
+scripts\windows\dev-start.bat
 ```
 
 ### Usage
 - Backend API: http://localhost:8000
 - Frontend: http://localhost:3000
 - API Docs: http://localhost:8000/docs
+
+## Project Structure
+
+```
+prospect-research-platform/
+├── src/prospect_research/     # Main application code
+│   ├── agents/               # AI agents
+│   ├── api/                  # FastAPI backend
+│   ├── config/              # Configuration
+│   ├── crews/               # Agent orchestration
+│   ├── tasks/               # Agent tasks
+│   ├── tools/               # Agent tools
+│   └── utils/               # Utilities
+├── scripts/                  # Development scripts
+│   └── windows/             # Windows batch scripts
+├── docs/                    # Documentation
+├── tests/                   # Test files
+├── .claude-code/            # Claude Code configs
+└── main.py                  # Main entry point
+```
 
 ## Architecture
 
@@ -49,6 +67,19 @@ Modular agent-based system:
 - **Outreach Agent**: Multi-channel campaigns
 
 ## Development
+
+### Development Commands
+
+```bash
+# Start development environment
+python main.py server                    # Start API server
+python main.py test                      # Run tests
+
+# Windows shortcuts
+scripts\windows\dev-start.bat            # Start development
+scripts\windows\qa-check.bat             # Code quality checks
+scripts\windows\test-api.bat             # Test all endpoints
+```
 
 ### Testing
 ```bash

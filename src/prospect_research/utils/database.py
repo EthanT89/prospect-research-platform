@@ -1,6 +1,6 @@
 from supabase import create_client, Client
-from config.settings import settings
-from utils.logger import setup_logger
+from ..config.settings import settings
+from .logger import setup_logger
 from typing import Optional
 import asyncio
 

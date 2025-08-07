@@ -104,7 +104,7 @@ markers = [
 asyncio_mode = "auto"
 
 [tool.coverage.run]
-source = ["agents", "crews", "config", "utils", "api"]
+source = ["src/prospect_research"]
 omit = [
     "*/tests/*",
     "*/venv/*",

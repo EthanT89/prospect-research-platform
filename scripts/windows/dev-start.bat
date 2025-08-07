@@ -16,12 +16,15 @@ echo =====================================
 echo.
 
 REM Check if virtual environment exists
-if not exist "venv\Scripts\activate.bat" (
+if not exist "..\..\venv\Scripts\activate.bat" (
     echo Error: Virtual environment not found!
-    echo Please run setup-windows.bat first
+    echo Please run scripts\windows\setup-windows.bat first
     pause
     exit /b 1
 )
+
+REM Change to project root directory
+cd /d "%~dp0..\.."
 
 REM Activate virtual environment
 echo Activating Python virtual environment...
@@ -44,7 +47,7 @@ if not exist ".env" (
 
 REM Start backend API server
 echo Starting backend API server...
-start "Backend API Server" cmd /k "title Backend API && python api\main.py"
+start "Backend API Server" cmd /k "title Backend API && python main.py server"
 
 REM Wait a moment for backend to start
 timeout /t 3 /nobreak > nul

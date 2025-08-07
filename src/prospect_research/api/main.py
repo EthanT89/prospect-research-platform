@@ -2,12 +2,8 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Dict, Any, Optional
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from utils.logger import setup_logger
-from config.settings import settings
+from ..utils.logger import setup_logger
+from ..config.settings import settings
 import uvicorn
 
 # Initialize FastAPI
