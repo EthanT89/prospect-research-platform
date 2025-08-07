@@ -21,9 +21,9 @@ def start_api_server():
     import uvicorn
     from prospect_research.config.settings import settings
     
-    print("🚀 Starting Prospect Research Platform API Server")
-    print(f"📍 Server: http://{settings.api_host}:{settings.api_port}")
-    print(f"📚 API Docs: http://{settings.api_host}:{settings.api_port}/docs")
+    print("Starting Prospect Research Platform API Server")
+    print(f"Server: http://{settings.api_host}:{settings.api_port}")
+    print(f"API Docs: http://{settings.api_host}:{settings.api_port}/docs")
     print("Press Ctrl+C to stop")
     
     uvicorn.run(

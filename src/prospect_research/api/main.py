@@ -59,18 +59,57 @@ async def health_check():
 async def research_company(request: CompanyResearchRequest):
     """Start company research workflow."""
     try:
-        # Mock implementation for now
         logger.info(f"Research requested for company: {request.company_name}")
         
+        # Import and use the real research agent
+        from ..agents.research.company_research_agent import CompanyResearchAgent
+        
+        # Execute research
+        agent = CompanyResearchAgent()
+        result = await agent.execute({
+            "company_name": request.company_name,
+            "domain": request.domain
+        })
+        
         return CompanyResearchResponse(
-            research_id="mock-research-id-123",
-            company_id="mock-company-id-456", 
-            status="completed",
-            message=f"Research initiated for {request.company_name}"
+            research_id=result.get("research_id", "unknown"),
+            company_id=result.get("insights", {}).get("company_profile", {}).get("name", "unknown"),
+            status=result.get("status", "completed"),
+            message=f"Research completed for {request.company_name} in {result.get('processing_time_ms', 0)}ms"
         )
         
     except Exception as e:
         logger.error(f"Company research failed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/research/{research_id}/results")
+async def get_research_results(research_id: str):
+    """Get detailed research results by research ID."""
+    try:
+        # For now, return mock detailed results
+        # In production, this would query the database
+        return {
+            "research_id": research_id,
+            "status": "completed",
+            "insights": {
+                "company_profile": {
+                    "name": "Example Company",
+                    "industry": "Technology",
+                    "description": "A technology company focused on innovation"
+                },
+                "business_intelligence": {
+                    "business_model": {"type": "B2B SaaS"},
+                    "revenue_model": ["Subscription", "Professional Services"]
+                },
+                "outreach_opportunities": {
+                    "pain_points": ["Scaling operations", "Customer acquisition"],
+                    "timing_triggers": ["Recent funding round", "Product launches"]
+                }
+            },
+            "confidence_score": 0.85
+        }
+    except Exception as e:
+        logger.error(f"Failed to get research results: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/companies")
