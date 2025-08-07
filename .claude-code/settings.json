@@ -1,0 +1,47 @@
+{
+  "projectSettings": {
+    "name": "Prospect Research Platform",
+    "type": "ai-agent-platform",
+    "primaryLanguage": "python",
+    "framework": "crewai",
+    "database": "supabase"
+  },
+  "developmentWorkflow": {
+    "testCommand": "pytest",
+    "lintCommand": "ruff check .",
+    "formatCommand": "black .",
+    "typeCheckCommand": "mypy .",
+    "startBackendCommand": "python api/main.py",
+    "startFrontendCommand": "cd frontend && npm run dev"
+  },
+  "aiAssistance": {
+    "codeStyle": "business-focused",
+    "testingRequired": true,
+    "typeHintsRequired": true,
+    "documentationStyle": "practical",
+    "errorHandlingStyle": "graceful-with-logging"
+  },
+  "tools": {
+    "preferredEditor": "vscode",
+    "requiredExtensions": [
+      "ms-python.python",
+      "ms-python.mypy-type-checker",
+      "charliermarsh.ruff",
+      "bradlc.vscode-tailwindcss"
+    ]
+  },
+  "contextFiles": [
+    "CLAUDE.md",
+    "README.md", 
+    "config/settings.py",
+    "agents/base_agent.py"
+  ],
+  "ignorePatterns": [
+    "venv/**",
+    "node_modules/**",
+    "*.pyc",
+    "__pycache__/**",
+    ".next/**",
+    "temp-instructions.md"
+  ]
+}
